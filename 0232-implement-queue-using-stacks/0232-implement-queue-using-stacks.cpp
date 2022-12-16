@@ -1,36 +1,36 @@
 class MyQueue {
-    stack<int> save_stack={};
-    stack<int> pop_stack={};
+    vector<int> save_stack={};
+    vector<int> pop_stack={};
 public:
     MyQueue() {
     }
     
     void push(int x) {
-        save_stack.push(x);
+        save_stack.push_back(x);
     }
     
     int pop() {
         if(pop_stack.size()==0){
             while(save_stack.size()>0){
-                int move = save_stack.top();
-                pop_stack.push(move);
-                save_stack.pop();
+                int move = save_stack.back();
+                pop_stack.push_back(move);
+                save_stack.pop_back();
             }
         }
-        int ans = pop_stack.top();
-        pop_stack.pop();
+        int ans = pop_stack.back();
+        pop_stack.pop_back();
         return ans;
     }
     
     int peek() {
         if(pop_stack.size()==0){
             while(save_stack.size()>0){
-                int move = save_stack.top();
-                pop_stack.push(move);
-                save_stack.pop();
+                int move = save_stack.back();
+                pop_stack.push_back(move);
+                save_stack.pop_back();
             }
         }
-        return pop_stack.top();
+        return pop_stack.back();
     }
     
     bool empty() {
